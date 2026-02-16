@@ -1,5 +1,5 @@
 # Wazuh SIEM Lab: Brute Force Detection and Investigation
-Status: Completed Lab | Detection Successful | MITRE ATT&CK Mapped
+Status: Completed | Attack Successfully Detected | Incident Investigated | MITRE ATT&CK Mapped
 ## Objective
 
 This project simulates a real-world brute force attack against a Windows system and demonstrates how it can be detected and investigated using Wazuh SIEM.
@@ -93,7 +93,30 @@ Wazuh analyzed the logs using its detection rules and generated alerts based on 
 - Security Event Log correlation
 
 - High severity alert level
+## Alert Analysis
 
+The Wazuh alert provided key forensic information required for incident investigation.
+
+Key fields analyzed:
+
+- Rule ID: 18107
+- Rule Level: 10 (High Severity)
+- Agent Name: Windows Target
+- Source IP Address: 192.168.56.101
+- Target Account: Administrator
+- Event ID: 4625
+- Log Source: Windows Security Event Log
+
+Analysis findings:
+
+- Multiple authentication failures originated from a single source IP
+- Failures occurred within a very short timeframe
+- Target account was a privileged account (Administrator)
+- Pattern matches brute force attack behavior
+
+Conclusion:
+
+The alert represents a confirmed brute force attack attempt against a Windows system.
 **Example Wazuh alert details:**
 
 Rule ID: **_18107_**  
@@ -179,8 +202,8 @@ The following timeline was observed during the attack simulation:
 
 - 13:59:23 — Wazuh correlation rule triggered (Rule ID 18107 – Level 10)
   
-- 13:59:24 — Investigation confirmed brute force pattern targeting Administrator account
-
+- 13:59:24 — SOC investigation confirmed brute force attack targeting privileged account
+- 
 This timeline demonstrates how SIEM enables rapid detection and investigation of malicious activity.
 ## Security Impact
 
@@ -197,6 +220,21 @@ If this were a real environment, this attack could result in:
 - Full system compromise
 
 Early detection by SIEM is critical to prevent escalation.
+## Relevance to Real-World SOC Operations
+
+Brute force attacks are one of the most common attack techniques observed in enterprise environments.
+
+SOC analysts must be able to:
+
+- Identify authentication attack patterns
+- Analyze SIEM alerts
+- Correlate logs from multiple sources
+- Identify attacker IP addresses
+- Determine attack severity
+- Recommend mitigation actions
+
+This lab demonstrates hands-on experience performing these tasks using a real SIEM platform.
+
 ## Recommended Mitigation
 
 The following mitigation actions are recommended to prevent or reduce brute force attacks:
@@ -229,7 +267,15 @@ This project demonstrates practical SOC analyst skills including:
 - Security event correlation
   
 - SIEM rule analysis and alert validation
+## Key Takeaways
 
+- Successfully simulated a brute force attack in a controlled lab environment
+- Detected attack using Wazuh SIEM correlation rules
+- Investigated Windows Security Event Logs
+- Identified attacker source IP and target account
+- Validated SIEM alert accuracy
+- Mapped attack to MITRE ATT&CK framework
+- Demonstrated real-world SOC investigation workflow
 ## Conclusion
 
 This lab successfully simulated and detected a brute force attack using Wazuh SIEM.
