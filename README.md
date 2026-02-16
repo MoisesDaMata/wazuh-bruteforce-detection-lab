@@ -1,9 +1,11 @@
 # Wazuh SIEM Lab: Brute Force Detection and Investigation
 ## Objective
 
-The purpose of this laboratory experiment was to provide a simulation of a _brute force attack_ on a _Windows operating system_ and to show how it can be detected with the usage of _Wazuh SIEM (Security Information Event Management)_. The project has demonstrated the entire _Security Operations Center (SOC)_ workflow including the simulation of an attack, the ingestion of logs into the system, the generation of alerts about potential incidents, and the investigation of incidents.
+This project simulates a real-world brute force attack against a Windows system and demonstrates how it can be detected and investigated using Wazuh SIEM.
 
-In this evaluation, the method of attack employed is one of the most commonly used by adversaries in order to obtain access without authorization through repeated attempts to log in.
+The lab replicates a Security Operations Center (SOC) workflow including attack simulation, log collection, alert generation, and incident investigation.
+
+Brute force attacks are commonly used by adversaries to gain unauthorized access through repeated authentication attempts, making early detection critical for security operations.
 
 MITRE ATT&CK Technique:
 
@@ -21,7 +23,7 @@ The lab environment consisted of three virtual machines:
 | Wazuh Server  | SIEM                              | 192.168.56.102   | Ubuntu Server |
 | Windows Target| Victim Machine (Wazuh Agent)      | 192.168.56.103   | Windows 10    |
 | Kali Linux    | Attacker Machine                  | 192.168.56.101   | Kali Linux    |
-## Network Diagram
+## Network Architecture Diagram
                [ Kali Linux ]
         Attacker - 192.168.56.101
                     |
@@ -58,9 +60,11 @@ Windows Target → Wazuh Agent → Wazuh Server → Alert generated
 A brute-force attack was completed using _Hydra_ from the Kali Linux system and the Windows Remote Desktop Protocol (RDP) service was the target.
 
 
-Utilized command:
-> **_Hydra -l Administrator -P Rockyou.txt rdp://192.168.56.103_**
+Command used:
 
+```bash
+> **_hydra -l Administrator -P rockyou.txt rdp://192.168.56.103_**
+```
 
 This command will generate multiple variations of passwords against the Administrator account with the _Rockyou.txt_ word list.
 
@@ -126,7 +130,7 @@ Event ID **4625** — Failed login attempt
 ![Wazuh Alert](Brute_Force_evidence/wazuh_alert.png)
 ![Wazuh Alert](Brute_Force_evidence/wazuh_alert_details.png)
 
-These alerts shows multiple failed login attempts detected by Wazuh from the attacker machine.
+These alerts show multiple failed login attempts detected by Wazuh from the attacker machine.
 
 ---
 
@@ -232,13 +236,14 @@ These capabilities are essential for detecting and responding to real-world cybe
 
 ## Author
 
-**Moises da Mata**
-Junior SOC Analyst (in transition)  
+**Moises da Mata**  
+Junior SOC Analyst | Cybersecurity Enthusiast  
 
 LinkedIn: https://www.linkedin.com/in/moisesdamata/  
 GitHub: https://github.com/MoisesDaMata  
 
-This project is part of my cybersecurity portfolio demonstrating practical SIEM detection and incident investigation skills.
+This project is part of my cybersecurity portfolio demonstrating hands-on SIEM monitoring, threat detection, and incident investigation skills aligned with real-world SOC operations.
+
 
 
 
