@@ -15,8 +15,7 @@ Brute force attacks are commonly used by adversaries to gain unauthorized access
 
 This technique is commonly used by attackers to gain unauthorized access through repeated authentication attempts.
 
-Official MITRE reference:
-https://attack.mitre.org/techniques/T1110/
+Official MITRE ATT&CK reference: https://attack.mitre.org/techniques/T1110/
 ## Lab Architecture
 
 The lab environment consisted of three virtual machines:
