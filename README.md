@@ -1,4 +1,10 @@
 # Wazuh SIEM Lab: Brute Force Detection and Investigation
+![Platform](https://img.shields.io/badge/Platform-Windows%2010-blue)
+![SIEM](https://img.shields.io/badge/SIEM-Wazuh-green)
+![Attack%20Type](https://img.shields.io/badge/Attack-Brute%20Force-red)
+![MITRE](https://img.shields.io/badge/MITRE-T1110-orange)
+![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
+
 Status: Completed | Attack Successfully Detected | Incident Investigated | MITRE ATT&CK Mapped
 ## Objective
 
@@ -41,7 +47,7 @@ The lab environment consisted of three virtual machines:
                     v
              [ Wazuh Server ]
           SIEM - 192.168.56.102
-           (Detection & Alerts)
+           ( & Alerts)
 ```
 
 ## Attack flow:
@@ -93,6 +99,23 @@ Wazuh analyzed the logs using its detection rules and generated alerts based on 
 - Security Event Log correlation
 
 - High severity alert level
+### Detection Rule Details
+
+Wazuh triggered rule ID 18107, which detects multiple Windows authentication failures.
+
+Rule logic summary:
+
+- Monitors Windows Security Event ID 4625
+- Correlates multiple failed login attempts
+- Identifies repeated failures from same source
+- Triggers alert when threshold exceeded
+
+Rule classification:
+
+- Rule ID: 18107
+- Level: 10 (High Severity)
+- Framework: MITRE ATT&CK
+- Technique: T1110 – Brute Force
 ## Alert Analysis
 
 The Wazuh alert provided key forensic information required for incident investigation.
@@ -192,17 +215,40 @@ Step 5 - Threat Classification
 Attack mapped to MITRE ATT&CK technique:
 
 **_T1110 – Brute Force_**
+## SOC Investigation Questions Answered
+
+During the investigation, the following key questions were addressed:
+
+- What happened?
+  > Multiple failed authentication attempts detected.
+
+- When did it happen?
+  > During the attack simulation timeline.
+
+- Where did it originate?
+  > Source IP: 192.168.56.101 (Kali Linux attacker machine)
+
+- What was targeted?
+  > Windows Administrator account via RDP.
+
+- Was the attack successful?
+  > No. All authentication attempts failed.
+
+- What is the severity?
+  > High severity due to attack pattern targeting privileged account.
+
+- What is the MITRE ATT&CK classification?
+  > T1110 – Brute Force
 ## Timeline of Events
 
-The following timeline was observed during the attack simulation:
-
-- 13:59:21 — First failed login attempt detected (Event ID 4625)
-
-- 13:59:22 — Multiple failed login attempts recorded from source IP 192.168.56.101
-
-- 13:59:23 — Wazuh correlation rule triggered (Rule ID 18107 – Level 10)
-  
-- 13:59:24 — SOC investigation confirmed brute force attack targeting privileged account
+| Time       | Event |
+|------------|------|
+| 13:59:21 | First failed login detected (Event ID 4625) |
+| 13:59:22 | Multiple failed login attempts detected |
+| 13:59:23 | Wazuh correlation rule triggered (Rule ID 18107) |
+| 13:59:24 | Alert generated in SIEM dashboard |
+| 13:59:30 | Investigation initiated |
+| 14:02:00 | Incident classified as brute force attack |
   
 This timeline demonstrates how SIEM enables rapid detection and investigation of malicious activity.
 ## Security Impact
@@ -285,7 +331,18 @@ The SIEM correctly identified multiple failed authentication attempts, generated
 This project demonstrates practical SOC analyst skills including threat detection, log analysis, incident investigation, and SIEM monitoring in a realistic environment.
 
 These capabilities are essential for detecting and responding to real-world cyber threats.
+## Why This Project Matters
 
+This project demonstrates the ability to:
+
+- Detect real attack techniques using SIEM
+- Analyze security logs and alerts
+- Perform incident investigation
+- Correlate events across systems
+- Apply MITRE ATT&CK framework
+- Follow SOC analyst investigation workflow
+
+These are core skills required for SOC Analyst roles.
 ## Author
 
 **Moises da Mata**  
