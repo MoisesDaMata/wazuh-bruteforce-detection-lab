@@ -15,6 +15,7 @@ Brute force attacks are commonly used by adversaries to gain unauthorized access
 
 This technique is commonly used by attackers to gain unauthorized access through repeated authentication attempts.
 
+Official MITRE reference:
 https://attack.mitre.org/techniques/T1110/
 ## Lab Architecture
 
@@ -203,7 +204,7 @@ The following timeline was observed during the attack simulation:
 - 13:59:23 — Wazuh correlation rule triggered (Rule ID 18107 – Level 10)
   
 - 13:59:24 — SOC investigation confirmed brute force attack targeting privileged account
-- 
+  
 This timeline demonstrates how SIEM enables rapid detection and investigation of malicious activity.
 ## Security Impact
 
