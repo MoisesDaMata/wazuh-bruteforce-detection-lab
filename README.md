@@ -24,6 +24,7 @@ The lab environment consisted of three virtual machines:
 | Windows Target| Victim Machine (Wazuh Agent)      | 192.168.56.103   | Windows 10    |
 | Kali Linux    | Attacker Machine                  | 192.168.56.101   | Kali Linux    |
 ## Network Architecture Diagram
+            ```
                [ Kali Linux ]
         Attacker - 192.168.56.101
                     |
@@ -38,6 +39,7 @@ The lab environment consisted of three virtual machines:
              [ Wazuh Server ]
           SIEM - 192.168.56.102
            (Detection & Alerts)
+    ```
 ## Attack flow:
 
 Kali Linux → Windows Target → Wazuh SIEM detection
@@ -63,7 +65,7 @@ A brute-force attack was completed using _Hydra_ from the Kali Linux system and 
 Command used:
 
 ```bash
-> **_hydra -l Administrator -P rockyou.txt rdp://192.168.56.103_**
+hydra -l Administrator -P rockyou.txt rdp://192.168.56.103
 ```
 
 This command will generate multiple variations of passwords against the Administrator account with the _Rockyou.txt_ word list.
