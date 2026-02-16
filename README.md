@@ -1,10 +1,10 @@
 # Wazuh SOC Lab – Brute Force Detection
 
-### 📌 Objective
+### Objective
 
 Simulate a brute force attack against a Windows endpoint and detect it using Wazuh SIEM.
 
-### 🖥️ Lab Architecture
+### Lab Architecture
 
 - Wazuh Server (Ubuntu)
 
@@ -12,17 +12,17 @@ Simulate a brute force attack against a Windows endpoint and detect it using Waz
 
 - Windows 10 (Target with Wazuh Agent)
 
-### ⚔️ Attack Simulation
+### Attack Simulation
 
 Used Kali to simulate brute force attempts using:
 
 > **hydra -l administrator -P rockyou.txt rdp://192.168.X.X**
 
-### 🚨 Detection
+### Detection
 
 Wazuh detected multiple failed login attempts (Event ID 4625).
 
-### 🔍 Analysis
+### Analysis
 
 Multiple failed logins within short timeframe
 
@@ -32,10 +32,10 @@ Rule triggered in Wazuh
 
 Alert level: High
 
-### 🎯 MITRE ATT&CK Mapping
+### MITRE ATT&CK Mapping
 
 Technique: T1110 – Brute Force
 
-### ✅ Outcome
+### Outcome
 
 Successfully detected brute force activity in real time.
