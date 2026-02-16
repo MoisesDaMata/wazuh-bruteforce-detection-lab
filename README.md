@@ -68,7 +68,7 @@ This command will generate multiple variations of passwords against the Administ
 
 
 This example illustrates a _real-world brute-force attack_, as is typically seen in corporate environments.
-## Detection
+## Detection in Wazuh SIEM
 
 The Wazuh Agent installed on the Windows machine collected logs and forwarded them to the Wazuh Server.
 
@@ -85,6 +85,25 @@ Wazuh analyzed the logs using its detection rules and generated alerts based on 
 - Security Event Log correlation
 
 - High severity alert level
+
+**Example Wazuh alert details:**
+
+Rule ID: **_18107_**  
+Rule Level: **_10_**  
+Rule Description: **_Multiple Windows login failures detected_**  
+MITRE Technique: **_T1110 – Brute Force_** 
+
+This rule is triggered when multiple failed login attempts are detected within a short timeframe, indicating potential brute force activity.
+
+**Source IP identified in alert:**
+
+> 192.168.56.101 (Kali Linux attacker machine)
+
+**Target account:**
+
+> Administrator
+
+This confirms the attack originated from the attacker machine and targeted the Windows system.
 
 **Relevant Windows Event ID:**
 
@@ -104,15 +123,21 @@ Event ID **4625** — Failed login attempt
 6 - Alert generated in SIEM dashboard
 ## Evidence
 
-### *Wazuh Alert Showing Failed Login Attempts*
+### Wazuh Alert Showing Failed Login Attempts
 
-<img width="1240" height="1754" alt="wazuh_alert" src="https://github.com/user-attachments/assets/43c3f8bb-7dd4-49eb-b3b2-c30cbea516f3" />
-<img width="2480" height="3508" alt="wazuh_alert_details" src="https://github.com/user-attachments/assets/87487f1d-3f99-48d9-8bec-b79c30b08cae" />
+![Wazuh Alert](Brute_Force_evidence/wazuh_alert.png)
+![Wazuh Alert](Brute_Force_evidence/wazuh_alert_details.png)
 
-### *Windows Event Viewer Logs Showing Event ID 4625*
+These alerts shows multiple failed login attempts detected by Wazuh from the attacker machine.
 
-<img width="2480" height="2382" alt="Windows_Event_logs" src="https://github.com/user-attachments/assets/bfb25d9f-5910-4ea4-ad8f-327ee9c6de61" />
-<img width="2480" height="2382" alt="Windows_Event_logs_2" src="https://github.com/user-attachments/assets/b704866d-a644-4c37-932a-60075af30260" />
+---
+
+### Windows Event Viewer Showing Event ID 4625
+
+![Windows Event Logs](Brute_Force_evidence/Windows_Event_logs.png)
+![Windows Event Logs](Brute_Force_evidence/Windows_Event_logs_2.png)
+
+These logs confirm authentication failures generated during the brute force attack.
 
 ## Investigation Process
 
@@ -136,6 +161,19 @@ Step 5 - Threat Classification
 Attack mapped to MITRE ATT&CK technique:
 
 **_T1110 – Brute Force_**
+## Timeline of Events
+
+The following timeline was observed during the attack simulation:
+
+- 13:59:21 — First failed login attempt detected (Event ID 4625)
+
+- 13:59:22 — Multiple failed login attempts recorded from source IP 192.168.56.101
+
+- 13:59:23 — Wazuh SIEM generated alert for multiple authentication failures
+
+- 13:59:24 — Investigation confirmed brute force pattern targeting Administrator account
+
+This timeline demonstrates how SIEM enables rapid detection and investigation of malicious activity.
 ## Security Impact
 
 If this were a real environment, this attack could result in:
@@ -151,6 +189,17 @@ If this were a real environment, this attack could result in:
 - Full system compromise
 
 Early detection by SIEM is critical to prevent escalation.
+## Recommended Mitigation
+
+The following mitigation actions are recommended to prevent or reduce brute force attacks:
+
+- Block the attacker IP address at the firewall
+- Enable account lockout policy after multiple failed login attempts
+- Enable Multi-Factor Authentication (MFA)
+- Restrict RDP access to trusted IP addresses only
+- Monitor authentication logs continuously using SIEM
+
+These measures significantly reduce the risk of unauthorized access.
 ## Skills Demonstrated
 
 This project demonstrates practical SOC analyst skills including:
@@ -169,12 +218,15 @@ This project demonstrates practical SOC analyst skills including:
 
 - Log correlation and threat identification
 ## Conclusion
-In this lab exercise Wazuh's proficiency in detecting brute force attacks by analyzing logs and generating alerts was evidenced.
 
-SIEM accurately detected multiple failed logins, as well as provided information for further investigation and conclusively identifying bad actor activity.
+This lab successfully simulated and detected a brute force attack using Wazuh SIEM.
 
-The project simulates a real life SOC situation while demonstrating the need for a centralized log collection and continuous monitoring for possible threats.
-Successfully detected brute force activity using Wazuh SIEM.
+The SIEM correctly identified multiple failed authentication attempts, generated high-severity alerts, and provided sufficient log data to investigate and confirm malicious activity.
+
+This project demonstrates practical SOC analyst skills including threat detection, log analysis, incident investigation, and SIEM monitoring in a realistic environment.
+
+These capabilities are essential for detecting and responding to real-world cyber threats.
+
 ## Author
 
 **Moises da Mata**
