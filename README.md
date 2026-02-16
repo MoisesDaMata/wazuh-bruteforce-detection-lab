@@ -47,7 +47,7 @@ The lab environment consisted of three virtual machines:
                     v
              [ Wazuh Server ]
           SIEM - 192.168.56.102
-           ( & Alerts)
+           (Detection & Alerts)
 ```
 
 ## Attack flow:
@@ -72,7 +72,7 @@ Windows Target → Wazuh Agent → Wazuh Server → Alert generated
 A brute-force attack was completed using _Hydra_ from the Kali Linux system and the Windows Remote Desktop Protocol (RDP) service was the target.
 
 
-Command used:
+Attack command executed from attacker machine:
 
 ```bash
 hydra -l Administrator -P rockyou.txt rdp://192.168.56.103
@@ -81,7 +81,7 @@ hydra -l Administrator -P rockyou.txt rdp://192.168.56.103
 This command will generate multiple variations of passwords against the Administrator account with the _Rockyou.txt_ word list.
 
 
-This example illustrates a _real-world brute-force attack_, as is typically seen in corporate environments.
+This simulation replicates a real-world brute-force attack scenario in a controlled lab environment.
 ## Detection in Wazuh SIEM
 
 The Wazuh Agent installed on the Windows machine collected logs and forwarded them to the Wazuh Server.
@@ -175,6 +175,13 @@ Event ID **4625** — Failed login attempt
 5 - Wazuh analyzed log
 
 6 - Alert generated in SIEM dashboard
+## Screenshots Overview
+
+The following evidence demonstrates the detection and investigation process:
+
+- Wazuh SIEM alerts triggered by brute force attack
+- Alert details showing source IP and rule ID
+- Windows Event Viewer logs confirming Event ID 4625
 ## Evidence
 
 ### Wazuh Alert Showing Failed Login Attempts
@@ -280,7 +287,22 @@ SOC analysts must be able to:
 - Recommend mitigation actions
 
 This lab demonstrates hands-on experience performing these tasks using a real SIEM platform.
+## False Positive Consideration
 
+During analysis, false positive scenarios were considered.
+
+Legitimate causes of multiple failed logins may include:
+
+- User entering incorrect password multiple times
+- Misconfigured services using outdated credentials
+- Automated scripts attempting authentication
+
+However, this alert was confirmed as malicious due to:
+
+- High frequency of login attempts
+- Originating from attacker machine (Kali Linux)
+- Use of brute force tool (Hydra)
+- Clear attack simulation context
 ## Recommended Mitigation
 
 The following mitigation actions are recommended to prevent or reduce brute force attacks:
