@@ -5,9 +5,11 @@ The purpose of this laboratory experiment was to provide a simulation of a _brut
 
 In this evaluation, the method of attack employed is one of the most commonly used by adversaries in order to obtain access without authorization through repeated attempts to log in.
 
-The Technique Associated with MITRE ATT&CK:
+MITRE ATT&CK Technique:
 
-**T1110 – Brute Force**
+T1110 – Brute Force
+
+This technique is commonly used by attackers to gain unauthorized access through repeated authentication attempts.
 
 https://attack.mitre.org/techniques/T1110/
 ## Lab Architecture
@@ -42,19 +44,15 @@ Kali Linux → Windows Target → Wazuh SIEM detection
 Windows Target → Wazuh Agent → Wazuh Server → Alert generated
 ## Tools Used
 
-- Wazuh SIEM
-
-- VirtualBox
-
-- Ubuntu Server
-
-- Windows 10
-
-- Kali Linux
-
-- Wazuh Agent
-
-- Windows Event Logs
+- Wazuh SIEM (Security Information and Event Management)
+  
+- Kali Linux (attacker machine)
+  
+- Hydra (brute force attack tool)
+  
+- Windows Event Viewer (log analysis)
+  
+- VirtualBox (lab virtualization environment)
 
 ## Attack Simulation
 A brute-force attack was completed using _Hydra_ from the Kali Linux system and the Windows Remote Desktop Protocol (RDP) service was the target.
@@ -217,6 +215,11 @@ This project demonstrates practical SOC analyst skills including:
 - MITRE ATT&CK framework mapping
 
 - Log correlation and threat identification
+  
+- Security event correlation
+  
+- Threat detection and analysis
+
 ## Conclusion
 
 This lab successfully simulated and detected a brute force attack using Wazuh SIEM.
@@ -230,12 +233,12 @@ These capabilities are essential for detecting and responding to real-world cybe
 ## Author
 
 **Moises da Mata**
+Junior SOC Analyst (in transition)  
 
-Aspiring SOC Analyst
+LinkedIn: https://www.linkedin.com/in/moisesdamata/  
+GitHub: https://github.com/MoisesDaMata  
 
-Transitioning from IT Support to Cybersecurity
-
-LinkedIn: ([Click Here:](https://www.linkedin.com/in/moisesfpm/))
+This project is part of my cybersecurity portfolio demonstrating practical SIEM detection and incident investigation skills.
 
 
 
