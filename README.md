@@ -1,4 +1,5 @@
 # Wazuh SIEM Lab: Brute Force Detection and Investigation
+Status: Completed Lab | Detection Successful | MITRE ATT&CK Mapped
 ## Objective
 
 This project simulates a real-world brute force attack against a Windows system and demonstrates how it can be detected and investigated using Wazuh SIEM.
@@ -7,9 +8,10 @@ The lab replicates a Security Operations Center (SOC) workflow including attack 
 
 Brute force attacks are commonly used by adversaries to gain unauthorized access through repeated authentication attempts, making early detection critical for security operations.
 
-MITRE ATT&CK Technique:
+## MITRE ATT&CK Mapping
 
-T1110 – Brute Force
+- Technique: T1110 – Brute Force  
+- Tactic: Credential Access
 
 This technique is commonly used by attackers to gain unauthorized access through repeated authentication attempts.
 
@@ -24,7 +26,8 @@ The lab environment consisted of three virtual machines:
 | Windows Target| Victim Machine (Wazuh Agent)      | 192.168.56.103   | Windows 10    |
 | Kali Linux    | Attacker Machine                  | 192.168.56.101   | Kali Linux    |
 ## Network Architecture Diagram
-            ```
+
+```
                [ Kali Linux ]
         Attacker - 192.168.56.101
                     |
@@ -39,7 +42,8 @@ The lab environment consisted of three virtual machines:
              [ Wazuh Server ]
           SIEM - 192.168.56.102
            (Detection & Alerts)
-    ```
+```
+
 ## Attack flow:
 
 Kali Linux → Windows Target → Wazuh SIEM detection
@@ -173,8 +177,8 @@ The following timeline was observed during the attack simulation:
 
 - 13:59:22 — Multiple failed login attempts recorded from source IP 192.168.56.101
 
-- 13:59:23 — Wazuh SIEM generated alert for multiple authentication failures
-
+- 13:59:23 — Wazuh correlation rule triggered (Rule ID 18107 – Level 10)
+  
 - 13:59:24 — Investigation confirmed brute force pattern targeting Administrator account
 
 This timeline demonstrates how SIEM enables rapid detection and investigation of malicious activity.
@@ -224,7 +228,7 @@ This project demonstrates practical SOC analyst skills including:
   
 - Security event correlation
   
-- Threat detection and analysis
+- SIEM rule analysis and alert validation
 
 ## Conclusion
 
