@@ -104,13 +104,86 @@ Event ID **4625** — Failed login attempt
 6 - Alert generated in SIEM dashboard
 ## Evidence
 
-Wazuh Alert Showing Failed Login Attempts
+### *Wazuh Alert Showing Failed Login Attempts*
 
-Brute_Force_evidence/failed_login_attempt.png
-## MITRE ATT&CK
+<img width="1240" height="1754" alt="wazuh_alert" src="https://github.com/user-attachments/assets/43c3f8bb-7dd4-49eb-b3b2-c30cbea516f3" />
+<img width="2480" height="3508" alt="wazuh_alert_details" src="https://github.com/user-attachments/assets/87487f1d-3f99-48d9-8bec-b79c30b08cae" />
 
-T1110 – Brute Force
+### *Windows Event Viewer Logs Showing Event ID 4625*
 
+<img width="2480" height="2382" alt="Windows_Event_logs" src="https://github.com/user-attachments/assets/bfb25d9f-5910-4ea4-ad8f-327ee9c6de61" />
+<img width="2480" height="2382" alt="Windows_Event_logs_2" src="https://github.com/user-attachments/assets/b704866d-a644-4c37-932a-60075af30260" />
+
+## Investigation Process
+
+The investigation followed standard SOC analyst workflow:
+
+Step 1 - Alert Identification
+Wazuh SIEM generated alerts indicating multiple failed login attempts.
+
+Step 2 - Log Analysis
+Analysis of Windows Security Logs confirmed Event ID **_4625_**.
+
+Step 3 - Source Identification
+Source IP address was identified as:
+
+**_192.168.56.101 (Kali Linux attacker machine)_**
+
+Step 4 - Pattern Confirmation
+Multiple login failures within a short timeframe confirmed brute force activity.
+
+Step 5 - Threat Classification
+Attack mapped to MITRE ATT&CK technique:
+
+**_T1110 – Brute Force_**
+## Security Impact
+
+If this were a real environment, this attack could result in:
+
+- Unauthorized access
+
+- Privilege escalation
+
+- Lateral movement
+
+- Data exfiltration
+
+- Full system compromise
+
+Early detection by SIEM is critical to prevent escalation.
+## Skills Demonstrated
+
+This project demonstrates practical SOC analyst skills including:
+
+- SIEM monitoring and alert analysis
+
+- Brute force attack detection
+
+- Windows Event Log analysis
+
+- Security incident investigation
+
+- Threat detection using Wazuh
+
+- MITRE ATT&CK framework mapping
+
+- Log correlation and threat identification
 ## Conclusion
+In this lab exercise Wazuh's proficiency in detecting brute force attacks by analyzing logs and generating alerts was evidenced.
 
+SIEM accurately detected multiple failed logins, as well as provided information for further investigation and conclusively identifying bad actor activity.
+
+The project simulates a real life SOC situation while demonstrating the need for a centralized log collection and continuous monitoring for possible threats.
 Successfully detected brute force activity using Wazuh SIEM.
+## Author
+
+**Moises da Mata**
+
+Aspiring SOC Analyst
+
+Transitioning from IT Support to Cybersecurity
+
+LinkedIn: ([Click Here:](https://www.linkedin.com/in/moisesfpm/))
+
+
+
