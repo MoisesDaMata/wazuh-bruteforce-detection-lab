@@ -23,7 +23,7 @@ Command:
 
 Wazuh detected Event ID **4625** (failed login attempts)
 
-See evidence in /Brute_Force_evidence folder.
+[See evidence in] (/Brute_Force_evidence.md) folder.
 
 ## MITRE ATT&CK
 
