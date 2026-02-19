@@ -12,15 +12,10 @@ Simulated a real-world RDP brute force attack against a Windows system and detec
 
 Attack generated multiple Event ID 4625 logs which triggered Wazuh rule 18107 (Level 10 – High Severity), mapped to MITRE ATT&CK T1110.
 
-Incident was investigated following SOC triage workflow and confirmed as malicious.
+The incident was investigated following SOC triage procedures and validated as a confirmed brute force attempt.
 ## Objective
 
-This project simulates a real-world brute force attack against a Windows system and demonstrates how it can be detected and investigated using Wazuh SIEM.
-
-The lab replicates a Security Operations Center (SOC) workflow including attack simulation, log collection, alert generation, and incident investigation.
-
-Brute force attacks are commonly used by adversaries to gain unauthorized access through repeated authentication attempts, making early detection critical for security operations.
-
+Demonstrate hands-on detection and investigation of a brute force attack using Wazuh SIEM in a controlled lab environment, replicating real SOC operational workflow.
 ## MITRE ATT&CK Mapping
 
 - Technique: T1110 – Brute Force  
@@ -349,16 +344,13 @@ This project demonstrates practical SOC analyst skills including:
 - Understanding of authentication log behavior
   
 - Basic detection engineering concepts
-
 ## Conclusion
 
-This lab successfully simulated and detected a brute force attack using Wazuh SIEM.
+This lab demonstrates how authentication-based attacks generate detectable patterns in Windows logs and how SIEM correlation rules transform raw log data into actionable security alerts.
 
-The SIEM correctly identified multiple failed authentication attempts, generated high-severity alerts, and provided sufficient log data to investigate and confirm malicious activity.
+The investigation process validated the alert, ruled out false positives, and confirmed malicious activity aligned with MITRE ATT&CK T1110.
 
-This project demonstrates practical SOC analyst skills including threat detection, log analysis, incident investigation, and SIEM monitoring in a realistic environment.
-
-These capabilities are essential for detecting and responding to real-world cyber threats.
+This project reflects practical SOC-level experience in detection, triage, log analysis, and incident validation within a realistic monitoring environment.
 ## Author
 
 **Moises da Mata**  
