@@ -6,6 +6,13 @@
 ![Status](https://img.shields.io/badge/Status-Completed-brightgreen)
 
 Status: Completed | Attack Successfully Detected | Incident Investigated | MITRE ATT&CK Mapped
+## Executive Summary
+
+Simulated a real-world RDP brute force attack against a Windows system and detected it using Wazuh SIEM correlation rules.
+
+Attack generated multiple Event ID 4625 logs which triggered Wazuh rule 18107 (Level 10 – High Severity), mapped to MITRE ATT&CK T1110.
+
+Incident was investigated following SOC triage workflow and confirmed as malicious.
 ## Objective
 
 This project simulates a real-world brute force attack against a Windows system and demonstrates how it can be detected and investigated using Wazuh SIEM.
@@ -21,7 +28,7 @@ Brute force attacks are commonly used by adversaries to gain unauthorized access
 
 This technique is commonly used by attackers to gain unauthorized access through repeated authentication attempts.
 
-Official MITRE ATT&CK reference: https://attack.mitre.org/techniques/T1110/
+Official reference: https://attack.mitre.org/techniques/T1110/
 ## Lab Architecture
 
 The lab environment consisted of three virtual machines:
@@ -164,17 +171,12 @@ This confirms the attack originated from the attacker machine and targeted the W
 Event ID **4625** — Failed login attempt
 ## Detection workflow
 
-1 - Attack executed from Kali Linux
-
-2 - Event generated on Windows machine
-
-3 - Wazuh Agent collected event log
-
-4 - Log forwarded to Wazuh Server
-
-5 - Wazuh analyzed log
-
-6 - Alert generated in SIEM dashboard
+1. Attack executed from Kali Linux
+2. Windows generated Event ID 4625 (failed authentication)
+3. Wazuh Agent collected event
+4. Log forwarded to Wazuh Server
+5. Correlation rule 18107 triggered
+6. High-severity alert generated in dashboard
 ## Screenshots Overview
 
 The following evidence demonstrates the detection and investigation process:
@@ -297,7 +299,13 @@ Legitimate causes of multiple failed logins may include:
 - Misconfigured services using outdated credentials
 - Automated scripts attempting authentication
 
-However, this alert was confirmed as malicious due to:
+However, before confirming the alert as malicious, additional validation steps were performed.
+
+Validation included checking for successful login events (Event ID 4624) to confirm no account compromise occurred.
+
+No successful authentication events were observed.
+
+The alert was confirmed as malicious due to:
 
 - High frequency of login attempts
 - Originating from attacker machine (Kali Linux)
@@ -335,15 +343,13 @@ This project demonstrates practical SOC analyst skills including:
 - Security event correlation
   
 - SIEM rule analysis and alert validation
-## Key Takeaways
+  
+- Alert triage and validation
 
-- Successfully simulated a brute force attack in a controlled lab environment
-- Detected attack using Wazuh SIEM correlation rules
-- Investigated Windows Security Event Logs
-- Identified attacker source IP and target account
-- Validated SIEM alert accuracy
-- Mapped attack to MITRE ATT&CK framework
-- Demonstrated real-world SOC investigation workflow
+- Understanding of authentication log behavior
+  
+- Basic detection engineering concepts
+
 ## Conclusion
 
 This lab successfully simulated and detected a brute force attack using Wazuh SIEM.
@@ -353,18 +359,6 @@ The SIEM correctly identified multiple failed authentication attempts, generated
 This project demonstrates practical SOC analyst skills including threat detection, log analysis, incident investigation, and SIEM monitoring in a realistic environment.
 
 These capabilities are essential for detecting and responding to real-world cyber threats.
-## Why This Project Matters
-
-This project demonstrates the ability to:
-
-- Detect real attack techniques using SIEM
-- Analyze security logs and alerts
-- Perform incident investigation
-- Correlate events across systems
-- Apply MITRE ATT&CK framework
-- Follow SOC analyst investigation workflow
-
-These are core skills required for SOC Analyst roles.
 ## Author
 
 **Moises da Mata**  
